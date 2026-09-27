@@ -1,0 +1,107 @@
+﻿<Window x:Class="vendingmachine_V005.WifiConfigWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="와이파이 네트워크 관리자" Height="740" Width="750"
+        WindowStartupLocation="CenterOwner" ResizeMode="NoResize"
+        Background="#F4F4F4">
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="270"/>
+        </Grid.RowDefinitions>
+
+        <!-- 상단 타이틀 -->
+        <DockPanel Grid.Row="0" LastChildFill="False">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock Text="📶" FontSize="22" Margin="0,0,10,0"/>
+                <TextBlock Text="무선 네트워크 (Wi-Fi) 통합 관리" FontSize="18" FontWeight="Bold" Foreground="#2C3E50" VerticalAlignment="Center"/>
+            </StackPanel>
+            <Button Content="새로 스캔 🔄" Click="BtnScan_Click" Width="120" Height="32" Background="#16A085" Foreground="White" FontWeight="Bold" DockPanel.Dock="Right" Cursor="Hand"/>
+        </DockPanel>
+
+        <!-- 와이파이 네트워크 목록 그리드 -->
+        <Border Grid.Row="1" Background="White" CornerRadius="12" Padding="10" Margin="0,5" BorderBrush="#E0E0E0" BorderThickness="1">
+            <DataGrid x:Name="dgWifiList" AutoGenerateColumns="False" CanUserAddRows="False" Background="Transparent" 
+                      BorderBrush="#E0E0E0" Foreground="#2C3E50" RowBackground="White" AlternatingRowBackground="#F9F9F9"
+                      HeadersVisibility="Column" SelectionMode="Single" FontSize="13" GridLinesVisibility="Horizontal">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="네트워크 이름 (SSID)" Binding="{Binding Ssid}" Width="370"/>
+                    <DataGridTextColumn Header="신호 강도" Binding="{Binding Signal}" Width="140"/>
+                    <DataGridTextColumn Header="채널 / 대역" Binding="{Binding Channel}" Width="140"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+
+        <!-- 하단 연결 제어 패널 (비밀번호와 연결 버튼 상단 배치) -->
+        <Border Grid.Row="2" Background="White" CornerRadius="12" Padding="12" Margin="0,5,0,0" BorderBrush="#E0E0E0" BorderThickness="1">
+            <StackPanel>
+                <TextBlock Text="💡 목록에서 와이파이를 선택하고 비밀번호를 입력한 뒤 연결 버튼을 누르세요." Foreground="#7F8C8D" FontSize="12" Margin="0,0,0,6"/>
+
+                <!-- 비밀번호 입력란 & 연결 버튼 한 줄 배치 -->
+                <Grid Margin="0,0,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="160"/>
+                    </Grid.ColumnDefinitions>
+                    <PasswordBox x:Name="txtWifiPassword" Grid.Column="0" Height="36" Margin="0,0,10,0" FontSize="16" VerticalContentAlignment="Center"/>
+                    <Button Grid.Column="1" Content="🚀 연결 요청" Click="BtnConnect_Click" Height="36" Background="#2980B9" Foreground="White" FontWeight="Bold" FontSize="14" Cursor="Hand"/>
+                </Grid>
+
+                <!-- QWERTY 문자 키패드 -->
+                <StackPanel HorizontalAlignment="Center">
+                    <!-- 숫자열 -->
+                    <WrapPanel HorizontalAlignment="Center" Margin="0,0,0,3">
+                        <Button Content="1" Click="BtnWifiKeypad_Click" Width="55" Height="28" Margin="2" FontSize="13" FontWeight="Bold" Background="#ECF0F1"/>
+                        <Button Content="2" Click="BtnWifiKeypad_Click" Width="55" Height="28" Margin="2" FontSize="13" FontWeight="Bold" Background="#ECF0F1"/>
+                        <Button Content="3" Click="BtnWifiKeypad_Click" Width="55" Height="28" Margin="2" FontSize="13" FontWeight="Bold" Background="#ECF0F1"/>
+                        <Button Content="4" Click="BtnWifiKeypad_Click" Width="55" Height="28" Margin="2" FontSize="13" FontWeight="Bold" Background="#ECF0F1"/>
+                        <Button Content="5" Click="BtnWifiKeypad_Click" Width="55" Height="28" Margin="2" FontSize="13" FontWeight="Bold" Background="#ECF0F1"/>
+                        <Button Content="6" Click="BtnWifiKeypad_Click" Width="55" Height="28" Margin="2" FontSize="13" FontWeight="Bold" Background="#ECF0F1"/>
+                        <Button Content="7" Click="BtnWifiKeypad_Click" Width="55" Height="28" Margin="2" FontSize="13" FontWeight="Bold" Background="#ECF0F1"/>
+                        <Button Content="8" Click="BtnWifiKeypad_Click" Width="55" Height="28" Margin="2" FontSize="13" FontWeight="Bold" Background="#ECF0F1"/>
+                        <Button Content="9" Click="BtnWifiKeypad_Click" Width="55" Height="28" Margin="2" FontSize="13" FontWeight="Bold" Background="#ECF0F1"/>
+                        <Button Content="0" Click="BtnWifiKeypad_Click" Width="55" Height="28" Margin="2" FontSize="13" FontWeight="Bold" Background="#ECF0F1"/>
+                    </WrapPanel>
+                    <!-- 1번째 줄 -->
+                    <WrapPanel HorizontalAlignment="Center" Margin="0,0,0,3">
+                        <Button Content="Q" Click="BtnWifiKeypad_Click" Width="55" Height="28" Margin="2" FontSize="13" FontWeight="Bold" Background="#ECF0F1"/>
+                        <Button Content="W" Click="BtnWifiKeypad_Click" Width="55" Height="28" Margin="2" FontSize="13" FontWeight="Bold" Background="#ECF0F1"/>
+                        <Button Content="E" Click="BtnWifiKeypad_Click" Width="55" Height="28" Margin="2" FontSize="13" FontWeight="Bold" Background="#ECF0F1"/>
+                        <Button Content="R" Click="BtnWifiKeypad_Click" Width="55" Height="28" Margin="2" FontSize="13" FontWeight="Bold" Background="#ECF0F1"/>
+                        <Button Content="T" Click="BtnWifiKeypad_Click" Width="55" Height="28" Margin="2" FontSize="13" FontWeight="Bold" Background="#ECF0F1"/>
+                        <Button Content="Y" Click="BtnWifiKeypad_Click" Width="55" Height="28" Margin="2" FontSize="13" FontWeight="Bold" Background="#ECF0F1"/>
+                        <Button Content="U" Click="BtnWifiKeypad_Click" Width="55" Height="28" Margin="2" FontSize="13" FontWeight="Bold" Background="#ECF0F1"/>
+                        <Button Content="I" Click="BtnWifiKeypad_Click" Width="55" Height="28" Margin="2" FontSize="13" FontWeight="Bold" Background="#ECF0F1"/>
+                        <Button Content="O" Click="BtnWifiKeypad_Click" Width="55" Height="28" Margin="2" FontSize="13" FontWeight="Bold" Background="#ECF0F1"/>
+                        <Button Content="P" Click="BtnWifiKeypad_Click" Width="55" Height="28" Margin="2" FontSize="13" FontWeight="Bold" Background="#ECF0F1"/>
+                    </WrapPanel>
+                    <!-- 2번째 줄 -->
+                    <WrapPanel HorizontalAlignment="Center" Margin="0,0,0,3">
+                        <Button Content="A" Click="BtnWifiKeypad_Click" Width="55" Height="28" Margin="2" FontSize="13" FontWeight="Bold" Background="#ECF0F1"/>
+                        <Button Content="S" Click="BtnWifiKeypad_Click" Width="55" Height="28" Margin="2" FontSize="13" FontWeight="Bold" Background="#ECF0F1"/>
+                        <Button Content="D" Click="BtnWifiKeypad_Click" Width="55" Height="28" Margin="2" FontSize="13" FontWeight="Bold" Background="#ECF0F1"/>
+                        <Button Content="F" Click="BtnWifiKeypad_Click" Width="55" Height="28" Margin="2" FontSize="13" FontWeight="Bold" Background="#ECF0F1"/>
+                        <Button Content="G" Click="BtnWifiKeypad_Click" Width="55" Height="28" Margin="2" FontSize="13" FontWeight="Bold" Background="#ECF0F1"/>
+                        <Button Content="H" Click="BtnWifiKeypad_Click" Width="55" Height="28" Margin="2" FontSize="13" FontWeight="Bold" Background="#ECF0F1"/>
+                        <Button Content="J" Click="BtnWifiKeypad_Click" Width="55" Height="28" Margin="2" FontSize="13" FontWeight="Bold" Background="#ECF0F1"/>
+                        <Button Content="K" Click="BtnWifiKeypad_Click" Width="55" Height="28" Margin="2" FontSize="13" FontWeight="Bold" Background="#ECF0F1"/>
+                        <Button Content="L" Click="BtnWifiKeypad_Click" Width="55" Height="28" Margin="2" FontSize="13" FontWeight="Bold" Background="#ECF0F1"/>
+                    </WrapPanel>
+                    <!-- 3번째 줄 -->
+                    <WrapPanel HorizontalAlignment="Center">
+                        <Button Content="Z" Click="BtnWifiKeypad_Click" Width="55" Height="28" Margin="2" FontSize="13" FontWeight="Bold" Background="#ECF0F1"/>
+                        <Button Content="X" Click="BtnWifiKeypad_Click" Width="55" Height="28" Margin="2" FontSize="13" FontWeight="Bold" Background="#ECF0F1"/>
+                        <Button Content="C" Click="BtnWifiKeypad_Click" Width="55" Height="28" Margin="2" FontSize="13" FontWeight="Bold" Background="#ECF0F1"/>
+                        <Button Content="V" Click="BtnWifiKeypad_Click" Width="55" Height="28" Margin="2" FontSize="13" FontWeight="Bold" Background="#ECF0F1"/>
+                        <Button Content="B" Click="BtnWifiKeypad_Click" Width="55" Height="28" Margin="2" FontSize="13" FontWeight="Bold" Background="#ECF0F1"/>
+                        <Button Content="N" Click="BtnWifiKeypad_Click" Width="55" Height="28" Margin="2" FontSize="13" FontWeight="Bold" Background="#ECF0F1"/>
+                        <Button Content="M" Click="BtnWifiKeypad_Click" Width="55" Height="28" Margin="2" FontSize="13" FontWeight="Bold" Background="#ECF0F1"/>
+                        <Button Content="C(초기화)" Click="BtnWifiKeypadClear_Click" Width="85" Height="28" Margin="2" FontSize="11" FontWeight="Bold" Background="#E74C3C" Foreground="White"/>
+                        <Button Content="←" Click="BtnWifiKeypadBack_Click" Width="65" Height="28" Margin="2" FontSize="13" FontWeight="Bold" Background="#F39C12" Foreground="White"/>
+                    </WrapPanel>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
