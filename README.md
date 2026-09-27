@@ -1,4 +1,4 @@
-# Vending-machine-App-V.6
+# Vending-machine-App-V.5
 Vending machine App V.6 DEV code files. Use Visual Studio to edit this APP.
 This app is for ARDINO MEGA 2560.
 You can see or Download the Circuit diagram in this repository.
